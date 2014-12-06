@@ -14,6 +14,10 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Build folders
+obj/
+bin/
+
 # =========================
 # Operating System Files
 # =========================
