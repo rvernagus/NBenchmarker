@@ -10,9 +10,9 @@ namespace NBenchmarker.ProofOfConcept
             _numberOfIterations = numberOfIterations;
         }
 
-        public bool Applies(BenchmarkStatus status)
+        public bool Applies(BenchmarkResult result)
         {
-            return status.NumberOfIterations >= _numberOfIterations;
+            return result.NumberOfIterations >= _numberOfIterations;
         }
     }
 }

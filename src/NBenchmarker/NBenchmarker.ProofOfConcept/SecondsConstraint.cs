@@ -11,9 +11,9 @@ namespace NBenchmarker.ProofOfConcept
             _seconds = TimeSpan.FromSeconds(seconds);
         }
 
-        public bool Applies(BenchmarkStatus status)
+        public bool Applies(BenchmarkResult result)
         {
-            return status.Elapsed >= _seconds;
+            return result.ElapsedTime >= _seconds;
         }
     }
 }

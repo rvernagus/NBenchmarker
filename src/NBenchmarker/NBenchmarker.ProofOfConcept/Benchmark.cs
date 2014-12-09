@@ -8,12 +8,12 @@ namespace NBenchmarker.ProofOfConcept
 {
     public static class Benchmark
     {
-        private static bool AnyConstraintApplies(Stopwatch watch, BenchmarkStatus status, IList<ITrialConstraint> constraints)
+        private static bool AnyConstraintApplies(Stopwatch watch, BenchmarkResult result, IList<ITrialConstraint> constraints)
         {
             watch.Stop();
-            var result = constraints.Any(c => c.Applies(status));
+            var anyApply = constraints.Any(c => c.Applies(result));
             watch.Start();
-            return result;
+            return anyApply;
         }
 
         private static void ExectuteNotTimedIteration(Stopwatch watch, Trial trial)
@@ -31,20 +31,18 @@ namespace NBenchmarker.ProofOfConcept
             var taskResult = Task.Run(() =>
             {
                 trial.SetUp();
-                var status = new BenchmarkStatus();
-                status.TrialName = trial.Name;
+                var result = new BenchmarkResult(trial);
 
                 var watch = new Stopwatch();
                 watch.Start();
-                while (!AnyConstraintApplies(watch, status, constraints))
+                while (!AnyConstraintApplies(watch, result, constraints))
                 {
                     trial.TimedIteration();
-                    status.Elapsed = watch.Elapsed;
-                    status.NumberOfIterations += 1;
+                    result.ElapsedTime = watch.Elapsed;
+                    result.NumberOfIterations += 1;
                     ExectuteNotTimedIteration(watch, trial);
                 }
                 watch.Stop();
-                var result = new BenchmarkResult(status);
 
                 trial.TearDown();
 
