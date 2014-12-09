@@ -6,9 +6,12 @@ namespace NBenchmarker.ProofOfConcept
     {
         public BenchmarkResult(BenchmarkStatus status)
         {
+            this.TrialName = status.TrialName;
             this.ElapsedTime = status.Elapsed;
             this.NumberOfIterations = status.NumberOfIterations;
         }
+
+        public string TrialName { get; private set; }
 
         public TimeSpan ElapsedTime { get; private set; }
 
