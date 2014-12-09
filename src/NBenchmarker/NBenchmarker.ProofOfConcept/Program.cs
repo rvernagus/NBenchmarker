@@ -10,7 +10,7 @@ namespace NBenchmarker.ProofOfConcept
         {
             var trial1 = new Trial("Trial 1: 200ms Action")
             {
-                Setup = () =>
+                SetUp = () =>
                 {
                     Console.WriteLine("Trial 1 Setup...");
                     Thread.Sleep(500);
@@ -29,7 +29,7 @@ namespace NBenchmarker.ProofOfConcept
 
             var trial2 = new Trial("Trial 2: 600ms Action")
             {
-                Setup = () =>
+                SetUp = () =>
                 {
                     Console.WriteLine("Trial 2 Setup...");
                     Thread.Sleep(100);
@@ -48,7 +48,7 @@ namespace NBenchmarker.ProofOfConcept
 
             var trial3 = new Trial("Trial 3: 10ms Action")
             {
-                Setup = () =>
+                SetUp = () =>
                 {
                     Console.WriteLine("Trial 3 Setup...");
                     Thread.Sleep(100);

@@ -25,12 +25,12 @@ namespace NBenchmarker.ProofOfConcept
 
         public static BenchmarkResult Run(Trial trial, params ITrialConstraint[] constraints)
         {
-            Contract.Requires(trial.Setup != null);
+            Contract.Requires(trial.SetUp != null);
             Contract.Requires(trial.TearDown != null);
 
             var taskResult = Task.Run(() =>
             {
-                trial.Setup();
+                trial.SetUp();
                 var status = new BenchmarkStatus();
                 status.TrialName = trial.Name;
 
