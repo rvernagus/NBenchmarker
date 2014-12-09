@@ -8,7 +8,8 @@ namespace NBenchmarker.ProofOfConcept
         {
             this.Name = name;
             this.Setup = () => { };
-            this.Timed = () => { };
+            this.NotTimedIteration = () => { };
+            this.TimedIteration = () => { };
             this.TearDown = () => { };
         }
 
@@ -16,7 +17,9 @@ namespace NBenchmarker.ProofOfConcept
 
         public Action Setup { get; set; }
 
-        public Action Timed { get; set; }
+        public Action TimedIteration { get; set; }
+
+        public Action NotTimedIteration { get; set; }
 
         public Action TearDown { get; set; }
     }

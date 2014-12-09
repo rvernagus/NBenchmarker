@@ -16,6 +16,13 @@ namespace NBenchmarker.ProofOfConcept
             return result;
         }
 
+        private static void ExectuteNotTimedIteration(Stopwatch watch, Trial trial)
+        {
+            watch.Stop();
+            trial.NotTimedIteration();
+            watch.Start();
+        }
+
         public static BenchmarkResult Run(Trial trial, params ITrialConstraint[] constraints)
         {
             Contract.Requires(trial.Setup != null);
@@ -31,9 +38,10 @@ namespace NBenchmarker.ProofOfConcept
                 watch.Start();
                 while (!AnyConstraintApplies(watch, status, constraints))
                 {
-                    trial.Timed();
+                    trial.TimedIteration();
                     status.Elapsed = watch.Elapsed;
                     status.NumberOfIterations += 1;
+                    ExectuteNotTimedIteration(watch, trial);
                 }
                 watch.Stop();
                 var result = new BenchmarkResult(status);

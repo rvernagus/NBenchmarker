@@ -15,7 +15,7 @@ namespace NBenchmarker.ProofOfConcept
                     Console.WriteLine("Trial 1 Setup...");
                     Thread.Sleep(500);
                 },
-                Timed = () =>
+                TimedIteration = () =>
                 {
                     Console.Write(".");
                     Thread.Sleep(200);
@@ -34,7 +34,7 @@ namespace NBenchmarker.ProofOfConcept
                     Console.WriteLine("Trial 2 Setup...");
                     Thread.Sleep(100);
                 },
-                Timed = () =>
+                TimedIteration = () =>
                 {
                     Console.Write(".");
                     Thread.Sleep(600);
@@ -53,7 +53,12 @@ namespace NBenchmarker.ProofOfConcept
                     Console.WriteLine("Trial 3 Setup...");
                     Thread.Sleep(100);
                 },
-                Timed = () =>
+                NotTimedIteration = () =>
+                {
+                    Console.Write("|");
+                    Thread.Sleep(10);
+                },
+                TimedIteration = () =>
                 {
                     Console.Write(".");
                     Thread.Sleep(10);
@@ -65,24 +70,9 @@ namespace NBenchmarker.ProofOfConcept
                 },
             };
 
-            //Console.WriteLine(trial1.Name);
-            //var result = Benchmark.Run(trial1, new SecondsConstraint(5));
-            //Console.WriteLine("Elapsed time: " + result.ElapsedTime);
-            //Console.WriteLine("# of iterations: " + result.NumberOfIterations);
-
-            //Console.WriteLine(trial2.Name);
-            //result = Benchmark.Run(trial2, new SecondsConstraint(5));
-            //Console.WriteLine("Elapsed time: " + result.ElapsedTime);
-            //Console.WriteLine("# of iterations: " + result.NumberOfIterations);
-
-            //Console.WriteLine(trial3.Name);
-            //result = Benchmark.Run(trial3, new SecondsConstraint(5));
-            //Console.WriteLine("Elapsed time: " + result.ElapsedTime);
-            //Console.WriteLine("# of iterations: " + result.NumberOfIterations);
-
             Benchmark
-                //.RunAll(new[] { trial1, trial2, trial3 }, new SecondsConstraint(5))
-                .RunAll(new[] { trial1, trial2, trial3 }, new NumberOfIterationsConstraint(10))
+                .RunAll(new[] { trial1, trial2, trial3 }, new SecondsConstraint(5))
+                //.RunAll(new[] { trial1, trial2, trial3 }, new NumberOfIterationsConstraint(10))
                 .ToList()
                 .ForEach(result =>
                 {
