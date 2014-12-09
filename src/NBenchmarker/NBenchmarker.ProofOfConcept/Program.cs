@@ -7,11 +7,11 @@ namespace NBenchmarker.ProofOfConcept
     {
         static void Main(string[] args)
         {
-            var trial = new Trial()
+            var trial1 = new Trial()
             {
                 Setup = () =>
                 {
-                    Console.WriteLine("Setup...");
+                    Console.WriteLine("Trial 1 Setup...");
                     Thread.Sleep(500);
                 },
                 Timed = () =>
@@ -20,14 +20,29 @@ namespace NBenchmarker.ProofOfConcept
                 },
                 TearDown = () =>
                 {
-                    Console.WriteLine("Tear down...");
+                    Console.WriteLine("Trial 1 Tear down...");
                     Thread.Sleep(500);
                 },
-                NumberOfIterations = 10,
             };
 
-            var result = Benchmark.Run(trial);
-            Console.WriteLine(result.ElapsedTime);
+            var trial2 = new Trial()
+            {
+                Timed = () =>
+                {
+                    Thread.Sleep(600);
+                },
+            };
+
+            Console.WriteLine("Trial 1");
+            var result = Benchmark.Run(trial1, new SecondsConstraint(10));
+            Console.WriteLine("Elapsed time: " + result.ElapsedTime);
+            Console.WriteLine("# of iterations: " + result.NumberOfIterations);
+
+            Console.WriteLine("Trial 2");
+            result = Benchmark.Run(trial2, new SecondsConstraint(10));
+            Console.WriteLine("Elapsed time: " + result.ElapsedTime);
+            Console.WriteLine("# of iterations: " + result.NumberOfIterations);
+
             Console.ReadLine();
         }
     }

@@ -1,21 +1,28 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.Contracts;
 
 namespace NBenchmarker.ProofOfConcept
 {
     public static class Benchmark
     {
-        public static Result Run(Trial trial)
+        public static BenchmarkResult Run(Trial trial, ITrialConstraint constraint)
         {
+            Contract.Requires(trial.Setup != null);
+            Contract.Requires(trial.TearDown != null);
+
             trial.Setup();
+            var status = new BenchmarkStatus();
 
             var watch = new Stopwatch();
             watch.Start();
-            for (int i = 0; i < trial.NumberOfIterations; i++)
+            do
             {
                 trial.Timed();
-            }
+                status.NumberOfIterations += 1;
+                status.Elapsed = watch.Elapsed;
+            } while (!constraint.Applies(status));
             watch.Stop();
-            var result = new Result(watch.Elapsed);
+            var result = new BenchmarkResult(status);
 
             trial.TearDown();
 
