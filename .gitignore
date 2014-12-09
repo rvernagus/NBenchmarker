@@ -20,6 +20,7 @@ bin/
 
 # Visual Studio Artifacts
 *.suo
+*.coverage
 
 # =========================
 # Operating System Files
