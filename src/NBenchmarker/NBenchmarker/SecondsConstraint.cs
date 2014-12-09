@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NBenchmarker.ProofOfConcept
+namespace NBenchmarker
 {
     public class SecondsConstraint : ITrialConstraint
     {

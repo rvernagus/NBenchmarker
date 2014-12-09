@@ -1,5 +1,5 @@
 ﻿
-namespace NBenchmarker.ProofOfConcept
+namespace NBenchmarker
 {
     public interface ITrialConstraint
     {
