@@ -71,8 +71,8 @@ namespace NBenchmarker.ProofOfConcept
             };
 
             Benchmark
-                .RunAll(new[] { trial1, trial2, trial3 }, new SecondsConstraint(5))
-                //.RunAll(new[] { trial1, trial2, trial3 }, new NumberOfIterationsConstraint(10))
+                //.RunAll(new[] { trial1, trial2, trial3 }, new SecondsConstraint(5))
+                .RunAll(new[] { trial1, trial2, trial3 }, new NumberOfIterationsConstraint(10))
                 .ToList()
                 .ForEach(result =>
                 {
