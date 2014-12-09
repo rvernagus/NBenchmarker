@@ -45,6 +45,7 @@
     <Compile Include="BenchmarkStatus.cs" />
     <Compile Include="ITrialConstraint.cs" />
     <Compile Include="BenchmarkResult.cs" />
+    <Compile Include="NumberOfIterationsConstraint.cs" />
     <Compile Include="SecondsConstraint.cs" />
     <Compile Include="Trial.cs" />
     <Compile Include="Program.cs" />
