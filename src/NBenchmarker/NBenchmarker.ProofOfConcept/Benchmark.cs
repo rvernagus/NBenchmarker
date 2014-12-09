@@ -8,7 +8,7 @@ namespace NBenchmarker.ProofOfConcept
 {
     public static class Benchmark
     {
-        private static bool AnyConstraintApplies(Stopwatch watch, BenchmarkResult result, IList<ITrialConstraint> constraints)
+        private static bool AnyConstraintApplies(Stopwatch watch, BenchmarkResult result, IList<IBenchmarkConstraint> constraints)
         {
             watch.Stop();
             var anyApply = constraints.Any(c => c.Applies(result));
@@ -23,7 +23,7 @@ namespace NBenchmarker.ProofOfConcept
             watch.Start();
         }
 
-        public static BenchmarkResult Run(Trial trial, params ITrialConstraint[] constraints)
+        public static BenchmarkResult Run(Trial trial, params IBenchmarkConstraint[] constraints)
         {
             Contract.Requires(trial.SetUp != null);
             Contract.Requires(trial.TearDown != null);
@@ -53,7 +53,7 @@ namespace NBenchmarker.ProofOfConcept
             return taskResult.Result;
         }
 
-        public static IList<BenchmarkResult> RunAll(IList<Trial> trials, params ITrialConstraint[] constraints)
+        public static IList<BenchmarkResult> RunAll(IList<Trial> trials, params IBenchmarkConstraint[] constraints)
         {
             return trials.Select(trial => Benchmark.Run(trial, constraints)).ToList();
         }

@@ -1,7 +1,7 @@
 ﻿
-namespace NBenchmarker.ProofOfConcept
+namespace NBenchmarker
 {
-    public class NumberOfIterationsConstraint : ITrialConstraint
+    public class NumberOfIterationsConstraint : IBenchmarkConstraint
     {
         private int _numberOfIterations;
 

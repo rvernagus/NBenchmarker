@@ -40,7 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenchmarkResult.cs" />
-    <Compile Include="ITrialConstraint.cs" />
+    <Compile Include="IBenchmarkConstraint.cs" />
+    <Compile Include="NumberOfIterationsConstraint.cs" />
     <Compile Include="SecondsConstraint.cs" />
     <Compile Include="Trial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

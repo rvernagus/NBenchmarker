@@ -2,7 +2,7 @@
 
 namespace NBenchmarker
 {
-    public class SecondsConstraint : ITrialConstraint
+    public class SecondsConstraint : IBenchmarkConstraint
     {
         private TimeSpan _seconds;
 

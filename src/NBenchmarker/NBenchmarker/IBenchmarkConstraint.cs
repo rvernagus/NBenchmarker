@@ -1,7 +1,7 @@
 ﻿
 namespace NBenchmarker
 {
-    public interface ITrialConstraint
+    public interface IBenchmarkConstraint
     {
         bool Applies(BenchmarkResult result);
     }
