@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace NBenchmarker.ProofOfConcept
 {
@@ -21,24 +21,30 @@ namespace NBenchmarker.ProofOfConcept
             Contract.Requires(trial.Setup != null);
             Contract.Requires(trial.TearDown != null);
 
-            trial.Setup();
-            var status = new BenchmarkStatus();
-            status.TrialName = trial.Name;
-
-            var watch = new Stopwatch();
-            watch.Start();
-            while (!AnyConstraintApplies(watch, status, constraints))
+            var taskResult = Task.Run(() =>
             {
-                trial.Timed();
-                status.Elapsed = watch.Elapsed;
-                status.NumberOfIterations += 1;
-            }
-            watch.Stop();
-            var result = new BenchmarkResult(status);
+                trial.Setup();
+                var status = new BenchmarkStatus();
+                status.TrialName = trial.Name;
 
-            trial.TearDown();
+                var watch = new Stopwatch();
+                watch.Start();
+                while (!AnyConstraintApplies(watch, status, constraints))
+                {
+                    trial.Timed();
+                    status.Elapsed = watch.Elapsed;
+                    status.NumberOfIterations += 1;
+                }
+                watch.Stop();
+                var result = new BenchmarkResult(status);
 
-            return result;
+                trial.TearDown();
+
+                return result;
+            });
+
+            taskResult.Wait();
+            return taskResult.Result;
         }
 
         public static IList<BenchmarkResult> RunAll(IList<Trial> trials, params ITrialConstraint[] constraints)

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Threading;
 using System.Linq;
+using System.Threading;
 
 namespace NBenchmarker.ProofOfConcept
 {
@@ -8,7 +8,7 @@ namespace NBenchmarker.ProofOfConcept
     {
         static void Main(string[] args)
         {
-            var trial1 = new Trial("200ms Action")
+            var trial1 = new Trial("Trial 1: 200ms Action")
             {
                 Setup = () =>
                 {
@@ -27,7 +27,7 @@ namespace NBenchmarker.ProofOfConcept
                 },
             };
 
-            var trial2 = new Trial("600ms Action")
+            var trial2 = new Trial("Trial 2: 600ms Action")
             {
                 Setup = () =>
                 {
@@ -46,7 +46,7 @@ namespace NBenchmarker.ProofOfConcept
                 },
             };
 
-            var trial3 = new Trial("10ms Action")
+            var trial3 = new Trial("Trial 3: 10ms Action")
             {
                 Setup = () =>
                 {
