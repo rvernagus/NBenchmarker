@@ -15,12 +15,12 @@ namespace NBenchmarker.ProofOfConcept
 
             var watch = new Stopwatch();
             watch.Start();
-            do
+            while (!constraint.Applies(status))
             {
                 trial.Timed();
-                status.NumberOfIterations += 1;
                 status.Elapsed = watch.Elapsed;
-            } while (!constraint.Applies(status));
+                status.NumberOfIterations += 1;
+            }
             watch.Stop();
             var result = new BenchmarkResult(status);
 

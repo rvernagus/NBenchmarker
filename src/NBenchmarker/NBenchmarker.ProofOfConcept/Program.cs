@@ -7,7 +7,7 @@ namespace NBenchmarker.ProofOfConcept
     {
         static void Main(string[] args)
         {
-            var trial1 = new Trial()
+            var trial1 = new Trial("Trial 1")
             {
                 Setup = () =>
                 {
@@ -25,7 +25,7 @@ namespace NBenchmarker.ProofOfConcept
                 },
             };
 
-            var trial2 = new Trial()
+            var trial2 = new Trial("Trial 2")
             {
                 Timed = () =>
                 {
@@ -33,12 +33,12 @@ namespace NBenchmarker.ProofOfConcept
                 },
             };
 
-            Console.WriteLine("Trial 1");
+            Console.WriteLine(trial1.Name);
             var result = Benchmark.Run(trial1, new SecondsConstraint(10));
             Console.WriteLine("Elapsed time: " + result.ElapsedTime);
             Console.WriteLine("# of iterations: " + result.NumberOfIterations);
 
-            Console.WriteLine("Trial 2");
+            Console.WriteLine(trial2.Name);
             result = Benchmark.Run(trial2, new SecondsConstraint(10));
             Console.WriteLine("Elapsed time: " + result.ElapsedTime);
             Console.WriteLine("# of iterations: " + result.NumberOfIterations);

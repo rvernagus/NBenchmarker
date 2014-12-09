@@ -4,12 +4,14 @@ namespace NBenchmarker.ProofOfConcept
 {
     public class Trial
     {
-        public Trial()
+        public Trial(string Name)
         {
             this.Setup = () => { };
             this.Timed = () => { };
             this.TearDown = () => { };
         }
+
+        public string Name { get; set; }
 
         public Action Setup { get; set; }
 
