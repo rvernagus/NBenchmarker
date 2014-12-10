@@ -44,6 +44,12 @@
     <Compile Include="Benchmark.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trials\RegexMatchTrial.cs" />
+    <Compile Include="Trials\SixHundredMillisecondTrial.cs" />
+    <Compile Include="Trials\StringContainsTrial.cs" />
+    <Compile Include="Trials\StringIndexOfTrial.cs" />
+    <Compile Include="Trials\TenMillisecondTrial.cs" />
+    <Compile Include="Trials\TwoHundredMillisecondTrial.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

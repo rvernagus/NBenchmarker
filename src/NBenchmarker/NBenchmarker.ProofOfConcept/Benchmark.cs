@@ -28,7 +28,7 @@ namespace NBenchmarker.ProofOfConcept
             Contract.Requires(trial.SetUp != null);
             Contract.Requires(trial.TearDown != null);
 
-            var taskResult = Task.Run(() =>
+            var task = Task.Run(() =>
             {
                 trial.SetUp();
                 var result = new BenchmarkResult(trial);
@@ -49,8 +49,8 @@ namespace NBenchmarker.ProofOfConcept
                 return result;
             });
 
-            taskResult.Wait();
-            return taskResult.Result;
+            task.Wait();
+            return task.Result;
         }
 
         public static IList<BenchmarkResult> RunAll(IList<Trial> trials, params IBenchmarkConstraint[] constraints)
