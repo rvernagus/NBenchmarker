@@ -30,6 +30,7 @@ namespace NBenchmarker.ProofOfConcept
                     Console.WriteLine(result.TrialName);
                     Console.WriteLine("Elapsed time: " + result.ElapsedTime);
                     Console.WriteLine("# of iterations: " + result.NumberOfIterations);
+                    Console.WriteLine("Avg iteration duration: " + result.IterationAverageDuration);
                     Console.WriteLine();
                 });
 

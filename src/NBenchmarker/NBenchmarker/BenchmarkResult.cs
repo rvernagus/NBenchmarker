@@ -16,5 +16,14 @@ namespace NBenchmarker
         public TimeSpan ElapsedTime { get; set; }
 
         public int NumberOfIterations { get; set; }
+
+        public TimeSpan IterationAverageDuration
+        {
+            get
+            {
+                var avgTicks = this.ElapsedTime.Ticks / this.NumberOfIterations;
+                return TimeSpan.FromTicks(avgTicks); 
+            }
+        }
     }
 }
