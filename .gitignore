@@ -51,3 +51,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Include all tool files
+!lib/FAKE/*.dll
+!lib/FAKE/*.exe
