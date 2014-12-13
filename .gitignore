@@ -17,6 +17,7 @@ $RECYCLE.BIN/
 # Build folders
 obj/
 bin/
+TestResults/
 
 # Visual Studio Artifacts
 *.suo
