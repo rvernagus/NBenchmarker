@@ -41,7 +41,9 @@
   <ItemGroup>
     <Compile Include="Benchmark.cs" />
     <Compile Include="BenchmarkResult.cs" />
+    <Compile Include="DefaultStopwatch.cs" />
     <Compile Include="IBenchmarkConstraint.cs" />
+    <Compile Include="IStopwatch.cs" />
     <Compile Include="NumberOfIterationsConstraint.cs" />
     <Compile Include="SecondsConstraint.cs" />
     <Compile Include="Trial.cs" />
