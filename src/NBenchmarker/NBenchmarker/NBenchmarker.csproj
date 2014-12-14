@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Benchmark.cs" />
     <Compile Include="BenchmarkResult.cs" />
     <Compile Include="IBenchmarkConstraint.cs" />
     <Compile Include="NumberOfIterationsConstraint.cs" />

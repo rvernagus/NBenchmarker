@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -55,12 +58,16 @@
     <Compile Include="BenchmarkResultTests.cs" />
     <Compile Include="SecondsConstraintTests.cs" />
     <Compile Include="NumberOfIterationsConstraintTests.cs" />
+    <Compile Include="BenchmarkTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NBenchmarker\NBenchmarker.csproj">
       <Project>{8eaac6d4-8ed5-434d-9840-c53ac32f8855}</Project>
       <Name>NBenchmarker</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
