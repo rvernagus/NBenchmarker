@@ -21,6 +21,10 @@ namespace NBenchmarker.Tests
             Assert.IsNotNull(trial.NotTimedIteration);
             Assert.IsNotNull(trial.TimedIteration);
             Assert.IsNotNull(trial.TearDown);
+            trial.SetUp();
+            trial.NotTimedIteration();
+            trial.TimedIteration();
+            trial.TearDown();
         }
     }
 }

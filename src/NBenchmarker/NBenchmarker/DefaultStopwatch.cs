@@ -16,5 +16,15 @@ namespace NBenchmarker
         {
             return _watch.Elapsed;
         }
+
+        public void Start()
+        {
+            _watch.Start();
+        }
+
+        public void Stop()
+        {
+            _watch.Stop();
+        }
     }
 }
