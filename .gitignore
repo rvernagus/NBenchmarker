@@ -18,6 +18,7 @@ $RECYCLE.BIN/
 obj/
 bin/
 TestResults/
+packages/
 
 # Visual Studio Artifacts
 *.suo
