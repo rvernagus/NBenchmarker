@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fakes\FakeStopwatch.cs" />
     <Compile Include="Fakes\FakeTrial.cs" />
     <Compile Include="TrialTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

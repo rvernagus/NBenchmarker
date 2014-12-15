@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using System;
 
 namespace NBenchmarker.Tests
@@ -18,18 +17,26 @@ namespace NBenchmarker.Tests
         }
 
         [TestMethod]
-        public void RunBenchmarkTimesIteration()
+        public void IterationIsTimed()
         {
             var trial = new Trial("");
-            var seq = new MockSequence();
-            var mockWatch = new Mock<IStopwatch>(MockBehavior.Strict);
-            mockWatch.InSequence(seq).Setup(w => w.Start());
-            mockWatch.InSequence(seq).Setup(w => w.Stop());
-            mockWatch.InSequence(seq).Setup(w => w.GetElapsedTime()).Returns(TimeSpan.FromMilliseconds(100));
+            var stopWatch = new Fakes.FakeStopwatch();
+            stopWatch.SetElapsedTime(TimeSpan.FromMilliseconds(100));
 
-            var result = Benchmark.Run(trial, mockWatch.Object);
+            var result = Benchmark.Run(trial, stopWatch);
+
             Assert.AreEqual(TimeSpan.FromMilliseconds(100), result.ElapsedTime);
-            mockWatch.Verify();
+        }
+
+        [TestMethod]
+        public void ExecutesStopwatchInSequence()
+        {
+            var trial = new Trial("");
+            var stopWatch = new Fakes.FakeStopwatch();
+
+            Benchmark.Run(trial, stopWatch);
+
+            Assert.AreEqual("123", stopWatch.OrderOfCalls);
         }
 
         [TestMethod]
