@@ -6,7 +6,7 @@ namespace NBenchmarker.ProofOfConcept.Trials
         public StringIndexOfTrial(string stringToSearch, string stringToFind)
             : base("String.IndexOf")
         {
-            this.TimedIteration = () =>
+            this.ForEachIteration = () =>
             {
                 stringToSearch.IndexOf(stringToFind);
             };

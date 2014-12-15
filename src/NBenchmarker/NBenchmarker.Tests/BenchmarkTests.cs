@@ -12,7 +12,7 @@ namespace NBenchmarker.Tests
         {
             var wasCalled = false;
             var trial = new Trial("");
-            trial.TimedIteration = () => wasCalled = true;
+            trial.ForEachIteration = () => wasCalled = true;
             Benchmark.Run(trial);
             Assert.IsTrue(wasCalled, "Expected TimedIteration to be called");
         }
@@ -30,6 +30,16 @@ namespace NBenchmarker.Tests
             var result = Benchmark.Run(trial, mockWatch.Object);
             Assert.AreEqual(TimeSpan.FromMilliseconds(100), result.ElapsedTime);
             mockWatch.Verify();
+        }
+
+        [TestMethod]
+        public void ExecutesTrialActionsInSequence()
+        {
+            var trial = new Fakes.FakeTrial("");
+
+            Benchmark.Run(trial);
+
+            Assert.AreEqual("12345", trial.OrderOfCalls);
         }
     }
 }

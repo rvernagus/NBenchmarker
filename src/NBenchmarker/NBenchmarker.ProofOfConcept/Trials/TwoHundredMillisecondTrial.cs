@@ -13,7 +13,7 @@ namespace NBenchmarker.ProofOfConcept.Trials
                 Console.WriteLine("200ms trial set up...");
                 Thread.Sleep(500);
             };
-            this.TimedIteration = () =>
+            this.ForEachIteration = () =>
             {
                 Console.Write(".");
                 Thread.Sleep(200);

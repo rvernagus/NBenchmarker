@@ -4,9 +4,9 @@ namespace NBenchmarker
 {
     public class BenchmarkResult
     {
-        public BenchmarkResult(Trial trial)
+        public BenchmarkResult(string trialName)
         {
-            this.TrialName = trial.Name;
+            this.TrialName = trialName;
             this.ElapsedTime = TimeSpan.Zero;
             this.NumberOfIterations = 0;
         }
@@ -22,7 +22,7 @@ namespace NBenchmarker
             get
             {
                 var avgTicks = this.ElapsedTime.Ticks / this.NumberOfIterations;
-                return TimeSpan.FromTicks(avgTicks); 
+                return TimeSpan.FromTicks(avgTicks);
             }
         }
     }

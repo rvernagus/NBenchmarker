@@ -13,7 +13,7 @@ namespace NBenchmarker.Tests
         public void TestInitialize()
         {
             trial = new Trial("");
-            result = new BenchmarkResult(trial);
+            result = new BenchmarkResult(trial.Name);
         }
 
         [TestMethod]

@@ -18,12 +18,12 @@ namespace NBenchmarker.Tests
         {
             var trial = new Trial("A Trial");
             Assert.IsNotNull(trial.SetUp);
-            Assert.IsNotNull(trial.NotTimedIteration);
-            Assert.IsNotNull(trial.TimedIteration);
+            Assert.IsNotNull(trial.BeforeEachIteration);
+            Assert.IsNotNull(trial.ForEachIteration);
             Assert.IsNotNull(trial.TearDown);
             trial.SetUp();
-            trial.NotTimedIteration();
-            trial.TimedIteration();
+            trial.BeforeEachIteration();
+            trial.ForEachIteration();
             trial.TearDown();
         }
     }

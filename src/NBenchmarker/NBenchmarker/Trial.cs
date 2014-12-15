@@ -8,8 +8,9 @@ namespace NBenchmarker
         {
             this.Name = name;
             this.SetUp = () => { };
-            this.NotTimedIteration = () => { };
-            this.TimedIteration = () => { };
+            this.BeforeEachIteration = () => { };
+            this.ForEachIteration = () => { };
+            this.AfterEachIteration = () => { };
             this.TearDown = () => { };
         }
 
@@ -17,9 +18,11 @@ namespace NBenchmarker
 
         public Action SetUp { get; set; }
 
-        public Action NotTimedIteration { get; set; }
+        public Action BeforeEachIteration { get; set; }
 
-        public Action TimedIteration { get; set; }
+        public Action ForEachIteration { get; set; }
+
+        public Action AfterEachIteration { get; set; }
 
         public Action TearDown { get; set; }
     }

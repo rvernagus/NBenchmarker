@@ -13,12 +13,12 @@ namespace NBenchmarker.ProofOfConcept.Trials
                 Console.WriteLine("Trial 3 Setup...");
                 Thread.Sleep(100);
             };
-            this.NotTimedIteration = () =>
+            this.BeforeEachIteration = () =>
             {
                 Console.Write("|");
                 Thread.Sleep(10);
             };
-            this.TimedIteration = () =>
+            this.ForEachIteration = () =>
             {
                 Console.Write(".");
                 Thread.Sleep(10);

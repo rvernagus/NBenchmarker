@@ -20,7 +20,7 @@ namespace NBenchmarker.ProofOfConcept
         private static void ExectuteNotTimedIteration(Stopwatch watch, Trial trial)
         {
             watch.Stop();
-            trial.NotTimedIteration();
+            trial.BeforeEachIteration();
             watch.Start();
         }
 
@@ -32,13 +32,13 @@ namespace NBenchmarker.ProofOfConcept
             var task = Task.Run(() =>
             {
                 trial.SetUp();
-                var result = new BenchmarkResult(trial);
+                var result = new BenchmarkResult(trial.Name);
 
                 var watch = new Stopwatch();
                 watch.Start();
                 while (!AnyConstraintApplies(watch, result, constraints))
                 {
-                    trial.TimedIteration();
+                    trial.ForEachIteration();
                     result.ElapsedTime = watch.Elapsed;
                     result.NumberOfIterations += 1;
                     ExectuteNotTimedIteration(watch, trial);

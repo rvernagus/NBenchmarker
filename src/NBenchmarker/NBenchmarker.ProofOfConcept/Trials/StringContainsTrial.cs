@@ -6,7 +6,7 @@ namespace NBenchmarker.ProofOfConcept.Trials
         public StringContainsTrial(string stringToSearch, string stringToFind)
             : base("String.Contains")
         {
-            this.TimedIteration = () =>
+            this.ForEachIteration = () =>
             {
                 stringToSearch.Contains(stringToFind);
             };
