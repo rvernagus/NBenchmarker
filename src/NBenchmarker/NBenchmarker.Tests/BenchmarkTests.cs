@@ -12,7 +12,9 @@ namespace NBenchmarker.Tests
             var wasCalled = false;
             var trial = new Trial("");
             trial.ForEachIteration = () => wasCalled = true;
+
             Benchmark.Run(trial);
+
             Assert.IsTrue(wasCalled, "Expected TimedIteration to be called");
         }
 
@@ -36,7 +38,7 @@ namespace NBenchmarker.Tests
 
             Benchmark.Run(trial, stopWatch);
 
-            Assert.AreEqual("123", stopWatch.OrderOfCalls);
+            Assert.AreEqual("123", stopWatch.CallOrder);
         }
 
         [TestMethod]
@@ -46,7 +48,7 @@ namespace NBenchmarker.Tests
 
             Benchmark.Run(trial);
 
-            Assert.AreEqual("12345", trial.OrderOfCalls);
+            Assert.AreEqual("12345", trial.CallOrder);
         }
     }
 }

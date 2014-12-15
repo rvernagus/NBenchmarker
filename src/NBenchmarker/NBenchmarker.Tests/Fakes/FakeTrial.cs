@@ -12,19 +12,19 @@ namespace NBenchmarker.Tests.Fakes
         public FakeTrial(string name)
             : base(name)
         {
-            this.OrderOfCalls = "";
+            this.CallOrder = "";
             this.SetUp = () =>
-                { _setUpWasCalled = true; OrderOfCalls += "1"; };
+                { _setUpWasCalled = true; CallOrder += "1"; };
             this.BeforeEachIteration = () =>
-                { _beforeEachIterationWasCalled = true; OrderOfCalls += "2"; };
+                { _beforeEachIterationWasCalled = true; CallOrder += "2"; };
             this.ForEachIteration = () =>
-                { _forEachIterationWasCalled = true; OrderOfCalls += "3"; };
+                { _forEachIterationWasCalled = true; CallOrder += "3"; };
             this.AfterEachIteration = () =>
-                { _afterEachIterationWasCalled = true; OrderOfCalls += "4"; };
+                { _afterEachIterationWasCalled = true; CallOrder += "4"; };
             this.TearDown = () =>
-                { _tearDownWasCalled = true; OrderOfCalls += "5"; };
+                { _tearDownWasCalled = true; CallOrder += "5"; };
         }
 
-        public string OrderOfCalls { get; private set; }
+        public string CallOrder { get; private set; }
     }
 }

@@ -8,18 +8,18 @@ namespace NBenchmarker.Tests.Fakes
 
         public FakeStopwatch()
         {
-            this.OrderOfCalls = "";
+            this.CallOrder = "";
             _timeSpan = TimeSpan.Zero;
         }
 
         public void Start()
         {
-            this.OrderOfCalls += "1";
+            this.CallOrder += "1";
         }
 
         public void Stop()
         {
-            this.OrderOfCalls += "2";
+            this.CallOrder += "2";
         }
 
         public void SetElapsedTime(TimeSpan timeSpan)
@@ -29,10 +29,10 @@ namespace NBenchmarker.Tests.Fakes
 
         public TimeSpan GetElapsedTime()
         {
-            this.OrderOfCalls += "3";
+            this.CallOrder += "3";
             return _timeSpan;
         }
 
-        public string OrderOfCalls { get; private set; }
+        public string CallOrder { get; private set; }
     }
 }
