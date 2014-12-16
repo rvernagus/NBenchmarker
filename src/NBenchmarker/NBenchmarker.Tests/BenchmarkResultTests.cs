@@ -42,5 +42,12 @@ namespace NBenchmarker.Tests
             result.NumberOfIterations = 50;
             Assert.AreEqual(TimeSpan.FromTicks(200), result.IterationAverageDuration);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void NegativeElapsedTimeCausesException()
+        {
+            result.ElapsedTime = TimeSpan.FromTicks(-1);
+        }
     }
 }
