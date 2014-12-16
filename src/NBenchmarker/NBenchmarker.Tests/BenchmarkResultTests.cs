@@ -49,5 +49,12 @@ namespace NBenchmarker.Tests
         {
             result.ElapsedTime = TimeSpan.FromTicks(-1);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void NegativeIterationsCausesException()
+        {
+            result.NumberOfIterations = -1;
+        }
     }
 }

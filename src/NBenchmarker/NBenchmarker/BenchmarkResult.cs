@@ -5,6 +5,7 @@ namespace NBenchmarker
     public class BenchmarkResult
     {
         private TimeSpan _elapsedTime;
+        private int _numberOfIterations;
 
         public BenchmarkResult(string trialName)
         {
@@ -31,7 +32,21 @@ namespace NBenchmarker
             }
         }
 
-        public int NumberOfIterations { get; set; }
+        public int NumberOfIterations
+        {
+            get { return _numberOfIterations; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("value");
+                }
+                else
+                {
+                    _numberOfIterations = value;
+                }
+            }
+        }
 
         public TimeSpan IterationAverageDuration
         {
