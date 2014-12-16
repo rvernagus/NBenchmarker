@@ -23,7 +23,7 @@ namespace NBenchmarker
             {
                 if (value < TimeSpan.Zero)
                 {
-                    throw new ArgumentOutOfRangeException("value");
+                    throw new ArgumentOutOfRangeException("value", value, "ElapsedTime cannot be less than TimeSpan.Zero");
                 }
                 else
                 {
@@ -39,7 +39,7 @@ namespace NBenchmarker
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("value");
+                    throw new ArgumentOutOfRangeException("value", value, "NumberOfIterations cannot be less than 0");
                 }
                 else
                 {
