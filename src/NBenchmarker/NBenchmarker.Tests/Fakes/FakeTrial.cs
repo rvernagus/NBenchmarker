@@ -1,4 +1,5 @@
 ﻿
+using System;
 namespace NBenchmarker.Tests.Fakes
 {
     public class FakeTrial : Trial
@@ -13,6 +14,7 @@ namespace NBenchmarker.Tests.Fakes
             : base(name)
         {
             this.CallOrder = "";
+            this.Stopwatch = new FakeStopwatch();
             this.SetUp = () =>
                 { _setUpWasCalled = true; CallOrder += "1"; };
             this.BeforeEachIteration = () =>
@@ -26,5 +28,11 @@ namespace NBenchmarker.Tests.Fakes
         }
 
         public string CallOrder { get; private set; }
+
+        public void SetElapsedTime(TimeSpan timeSpan)
+        {
+            var stopwatch = (FakeStopwatch)this.Stopwatch;
+            stopwatch.SetElapsedTime(timeSpan);
+        }
     }
 }

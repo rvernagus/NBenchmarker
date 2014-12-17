@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NBenchmarker.Tests
 {
@@ -45,6 +46,7 @@ namespace NBenchmarker.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExcludeFromCodeCoverage] // Shows as Not Covered even though it is executed
         public void NegativeElapsedTimeCausesException()
         {
             result.ElapsedTime = TimeSpan.FromTicks(-1);
@@ -52,6 +54,7 @@ namespace NBenchmarker.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExcludeFromCodeCoverage] // Shows as Not Covered even though it is executed
         public void NegativeIterationsCausesException()
         {
             result.NumberOfIterations = -1;

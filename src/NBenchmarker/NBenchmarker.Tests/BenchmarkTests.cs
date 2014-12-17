@@ -19,38 +19,33 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void ResultRecordsStopwatchElapsedTime()
         {
-            var stopwatch = new Fakes.FakeStopwatch();
-            stopwatch.SetElapsedTime(TimeSpan.FromSeconds(1));
-            var trial = new Trial("")
-            {
-                Stopwatch = stopwatch
-            };
+            var trial = new Fakes.FakeTrial("");
+            trial.SetElapsedTime(TimeSpan.FromSeconds(1));
 
             var result = Benchmark.Run(trial);
 
             Assert.AreEqual(TimeSpan.FromSeconds(1), result.ElapsedTime);
         }
 
-        //[TestMethod]
-        //public void ExecutesStopwatchInSequence()
-        //{
-        //    var trial = new Trial("");
-        //    var stopwatch = Helpers.StopWatchHelper.GetFiveSecondStopwatchWithTwoTicks();
+        [TestMethod]
+        public void ExecutesStopwatchInSequence()
+        {
+            var trial = new Fakes.FakeTrial("");
 
-        //    Benchmark.Run(trial, stopwatch);
+            Benchmark.Run(trial);
 
-        //    Assert.AreEqual("13323", stopwatch.CallOrder);
-        //}
+            var stopwatch = (Fakes.FakeStopwatch)trial.Stopwatch;
+            Assert.AreEqual("123", stopwatch.CallOrder);
+        }
 
-        //[TestMethod]
-        //public void DefaultIteratesForFiveSeconds()
-        //{
-        //    var trial = new Fakes.FakeTrial("");
-        //    var stopwatch = Helpers.StopWatchHelper.GetFiveSecondStopwatch();
+        [TestMethod]
+        public void DefaultIteratesOneTime()
+        {
+            var trial = new Fakes.FakeTrial("");
 
-        //    var result = Benchmark.Run(trial, stopwatch);
+            var result = Benchmark.Run(trial);
 
-        //    Assert.AreEqual(5, result.NumberOfIterations);
-        //}
+            Assert.AreEqual(1, result.NumberOfIterations);
+        }
     }
 }
