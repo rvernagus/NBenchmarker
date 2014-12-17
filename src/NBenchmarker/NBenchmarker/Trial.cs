@@ -7,6 +7,7 @@ namespace NBenchmarker
         public Trial(string name)
         {
             this.Name = name;
+            this.Stopwatch = new DefaultStopwatch();
             this.SetUp = () => { };
             this.BeforeEachIteration = () => { };
             this.ForEachIteration = () => { };
@@ -15,6 +16,8 @@ namespace NBenchmarker
         }
 
         public string Name { get; private set; }
+
+        public IStopwatch Stopwatch { get; set; }
 
         public Action SetUp { get; set; }
 

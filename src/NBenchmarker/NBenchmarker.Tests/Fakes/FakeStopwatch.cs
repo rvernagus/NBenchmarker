@@ -1,15 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NBenchmarker.Tests.Fakes
 {
     public class FakeStopwatch : IStopwatch
     {
-        private TimeSpan _timeSpan;
+        private Queue<TimeSpan> _timeSpans;
 
         public FakeStopwatch()
         {
+            _timeSpans = new Queue<TimeSpan>();
             this.CallOrder = "";
-            _timeSpan = TimeSpan.Zero;
+            SetElapsedTime(TimeSpan.Zero);
         }
 
         public void Start()
@@ -24,15 +27,31 @@ namespace NBenchmarker.Tests.Fakes
 
         public void SetElapsedTime(TimeSpan timeSpan)
         {
-            _timeSpan = timeSpan;
+            SetElapsedTimes(timeSpan);
         }
 
         public TimeSpan GetElapsedTime()
         {
             this.CallOrder += "3";
-            return _timeSpan;
+            if (_timeSpans.Count == 1)
+            {
+                return _timeSpans.Peek();
+            }
+            else
+            {
+                return _timeSpans.Dequeue();
+            }
         }
 
         public string CallOrder { get; private set; }
+
+        public void SetElapsedTimes(params TimeSpan[] timeSpans)
+        {
+            _timeSpans = new Queue<TimeSpan>();
+            foreach (var timeSpan in timeSpans)
+            {
+                _timeSpans.Enqueue(timeSpan);
+            }
+        }
     }
 }
