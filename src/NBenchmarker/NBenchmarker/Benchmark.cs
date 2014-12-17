@@ -4,12 +4,12 @@ namespace NBenchmarker
 {
     public static class Benchmark
     {
-        public static BenchmarkResult Run(Trial trial, IStopwatch stopwatch)
+        public static BenchmarkResult Run(Trial trial)
         {
             var result = new BenchmarkResult(trial.Name);
 
             trial.SetUp();
-            stopwatch.Start();
+            trial.Stopwatch.Start();
 
             while (result.NumberOfIterations < 1)
             {
@@ -19,16 +19,11 @@ namespace NBenchmarker
                 result.NumberOfIterations += 1;
             }
 
-            stopwatch.Stop();
+            trial.Stopwatch.Stop();
             trial.TearDown();
 
-            result.ElapsedTime = stopwatch.GetElapsedTime();
+            result.ElapsedTime = trial.Stopwatch.GetElapsedTime();
             return result;
-        }
-
-        public static BenchmarkResult Run(Trial trial)
-        {
-            return Run(trial, new DefaultStopwatch());
         }
     }
 }
