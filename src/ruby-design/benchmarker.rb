@@ -25,18 +25,33 @@ class MyTrial < Trial
   end
 end
 
+class BenchmarkResult
+  attr_accessor :elapsed_time, :number_of_iterations
+
+  def initialize
+    @elapsed_time = 0
+    @number_of_iterations = 0
+  end
+
+  def to_s
+    "#<BenchmarkResult @elapsed_time=#{@elapsed_time}, @number_of_iterations=#{@number_of_iterations}>"
+  end
+end
+
+
 # The basic concept is to time a chunk of code
 class Benchmarker
   def benchmark(trial)
     trial.before_benchmark
 
-    result = 0
-    0.upto(9) do
+    result = BenchmarkResult.new
+    while continue_benchmark?(result)
       trial.before_benchmark_loop
       start_time = Time.now
       trial.benchmark_loop
       end_time = Time.now
-      result += start_time - end_time
+      result.elapsed_time += end_time - start_time
+      result.number_of_iterations += 1
       trial.after_benchmark_loop
     end
 
@@ -44,9 +59,36 @@ class Benchmarker
 
     result
   end
+
+  def continue_benchmark?
+    false
+  end
+end
+
+class TimedBenchmarker < Benchmarker
+  def initialize(number_of_seconds)
+    @number_of_seconds = number_of_seconds
+  end
+
+  def continue_benchmark?(result)
+    result.elapsed_time < @number_of_seconds
+  end
+end
+
+class IterationBenchmarker < Benchmarker
+  def initialize(number_of_iterations)
+    @number_of_iterations = number_of_iterations
+  end
+
+  def continue_benchmark?(result)
+    result.number_of_iterations < @number_of_iterations
+  end
 end
 
 puts "----------------"
-benchmarker = Benchmarker.new
-result = benchmarker.benchmark(MyTrial.new)
+benchmarker1 = TimedBenchmarker.new(5)
+result = benchmarker1.benchmark(MyTrial.new)
+puts result
+benchmarker2 = IterationBenchmarker.new(6)
+result = benchmarker2.benchmark(MyTrial.new)
 puts result
