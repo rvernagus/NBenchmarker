@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("0.1.0.0")]
 
 // Friend assembly for testing
-[assembly: InternalsVisibleTo("NBenchmark.Tests")]
+[assembly: InternalsVisibleTo("NBenchmarker.Tests")]

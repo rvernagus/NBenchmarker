@@ -51,5 +51,19 @@ namespace NBenchmarker.Tests
 
             Assert.AreEqual(1, result.NumberOfIterations);
         }
+
+        [TestMethod]
+        public void ContinuesForOneIterationByDefault()
+        {
+            var trial = new Fakes.FakeTrial("");
+            var benchmark = new Benchmark();
+            var result = new BenchmarkResult("");
+
+            Assert.IsTrue(benchmark.ShouldContinue(result));
+
+            result.NumberOfIterations = 1;
+
+            Assert.IsFalse(benchmark.ShouldContinue(result));
+        }
     }
 }
