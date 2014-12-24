@@ -10,8 +10,9 @@ namespace NBenchmarker.Tests
         public void BenchmarkExecutesTrialActionsInSequence()
         {
             var trial = new Fakes.FakeTrial("");
+            var benchmark = new Benchmark();
 
-            Benchmark.Run(trial);
+            benchmark.Run(trial);
 
             Assert.AreEqual("12345", trial.CallOrder);
         }
@@ -21,8 +22,9 @@ namespace NBenchmarker.Tests
         {
             var trial = new Fakes.FakeTrial("");
             trial.SetElapsedTime(TimeSpan.FromSeconds(1));
+            var benchmark = new Benchmark();
 
-            var result = Benchmark.Run(trial);
+            var result = benchmark.Run(trial);
 
             Assert.AreEqual(TimeSpan.FromSeconds(1), result.ElapsedTime);
         }
@@ -31,8 +33,9 @@ namespace NBenchmarker.Tests
         public void ExecutesStopwatchInSequence()
         {
             var trial = new Fakes.FakeTrial("");
+            var benchmark = new Benchmark();
 
-            Benchmark.Run(trial);
+            benchmark.Run(trial);
 
             var stopwatch = (Fakes.FakeStopwatch)trial.Stopwatch;
             Assert.AreEqual("123", stopwatch.CallOrder);
@@ -42,8 +45,9 @@ namespace NBenchmarker.Tests
         public void DefaultIteratesOneTime()
         {
             var trial = new Fakes.FakeTrial("");
+            var benchmark = new Benchmark();
 
-            var result = Benchmark.Run(trial);
+            var result = benchmark.Run(trial);
 
             Assert.AreEqual(1, result.NumberOfIterations);
         }

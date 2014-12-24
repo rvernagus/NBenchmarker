@@ -1,10 +1,9 @@
-﻿using System;
-
+﻿
 namespace NBenchmarker
 {
-    public static class Benchmark
+    public class Benchmark
     {
-        public static BenchmarkResult Run(Trial trial)
+        public BenchmarkResult Run(Trial trial)
         {
             var result = new BenchmarkResult(trial.Name);
 
