@@ -92,5 +92,19 @@ namespace NBenchmarker.Tests
             result.NumberOfIterations = 2;
             Assert.IsFalse(benchmark.ShouldContinue(result));
         }
+
+        [TestMethod]
+        public void ContinueWithSecondsConstraint()
+        {
+            var benchmark = new Benchmark();
+            var result = new BenchmarkResult("");
+            benchmark.AddConstraint(new SecondsConstraint(5));
+
+            result.ElapsedTime = TimeSpan.FromSeconds(4.9);
+            Assert.IsTrue(benchmark.ShouldContinue(result));
+
+            result.ElapsedTime = TimeSpan.FromSeconds(5.0);
+            Assert.IsFalse(benchmark.ShouldContinue(result));
+        }
     }
 }
