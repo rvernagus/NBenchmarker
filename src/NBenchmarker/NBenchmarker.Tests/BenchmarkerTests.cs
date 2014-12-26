@@ -4,7 +4,7 @@ using System;
 namespace NBenchmarker.Tests
 {
     [TestClass]
-    public class BenchmarkTests
+    public class BenchmarkerTests
     {
         [TestMethod]
         public void BenchmarkExecutesTrialActionsInSequence()
