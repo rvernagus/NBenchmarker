@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace NBenchmarker
 {
-    public class Benchmark
+    public class Benchmarker
     {
         private ICollection<IBenchmarkConstraint> _constraints;
         private bool _useDefaultConstraint;
 
-        public Benchmark()
+        public Benchmarker()
         {
             _useDefaultConstraint = true;
             _constraints = new List<IBenchmarkConstraint>();

@@ -10,7 +10,7 @@ namespace NBenchmarker.Tests
         public void BenchmarkExecutesTrialActionsInSequence()
         {
             var trial = new Fakes.FakeTrial("");
-            var benchmark = new Benchmark();
+            var benchmark = new Benchmarker();
 
             benchmark.Run(trial);
 
@@ -22,7 +22,7 @@ namespace NBenchmarker.Tests
         {
             var trial = new Fakes.FakeTrial("");
             trial.SetElapsedTime(TimeSpan.FromSeconds(1));
-            var benchmark = new Benchmark();
+            var benchmark = new Benchmarker();
 
             var result = benchmark.Run(trial);
 
@@ -33,7 +33,7 @@ namespace NBenchmarker.Tests
         public void ExecutesStopwatchInSequence()
         {
             var trial = new Fakes.FakeTrial("");
-            var benchmark = new Benchmark();
+            var benchmark = new Benchmarker();
 
             benchmark.Run(trial);
 
@@ -45,7 +45,7 @@ namespace NBenchmarker.Tests
         public void DefaultIteratesOneTime()
         {
             var trial = new Fakes.FakeTrial("");
-            var benchmark = new Benchmark();
+            var benchmark = new Benchmarker();
 
             var result = benchmark.Run(trial);
 
@@ -55,7 +55,7 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void ContinuesForOneIterationByDefault()
         {
-            var benchmark = new Benchmark();
+            var benchmark = new Benchmarker();
             var result = new BenchmarkResult("");
 
             Assert.IsTrue(benchmark.ShouldContinue(result));
@@ -68,7 +68,7 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void IfConstraintIsAddedContinuesAccordingToNew()
         {
-            var benchmark = new Benchmark();
+            var benchmark = new Benchmarker();
             var result = new BenchmarkResult("");
             result.NumberOfIterations = 1;
 
@@ -82,7 +82,7 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void ContinueWithNumberOfIterationsConstraint()
         {
-            var benchmark = new Benchmark();
+            var benchmark = new Benchmarker();
             var result = new BenchmarkResult("");
             benchmark.AddConstraint(new NumberOfIterationsConstraint(2));
 
@@ -96,7 +96,7 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void ContinueWithSecondsConstraint()
         {
-            var benchmark = new Benchmark();
+            var benchmark = new Benchmarker();
             var result = new BenchmarkResult("");
             benchmark.AddConstraint(new SecondsConstraint(5));
 
