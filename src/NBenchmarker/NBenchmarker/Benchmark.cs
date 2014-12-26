@@ -6,9 +6,11 @@ namespace NBenchmarker
     public class Benchmark
     {
         private ICollection<IBenchmarkConstraint> _constraints;
+        private bool _useDefaultConstraint;
 
         public Benchmark()
         {
+            _useDefaultConstraint = true;
             _constraints = new List<IBenchmarkConstraint>();
             var defaultConstraint = new NumberOfIterationsConstraint(1);
             _constraints.Add(defaultConstraint);
@@ -40,6 +42,22 @@ namespace NBenchmarker
         internal bool ShouldContinue(BenchmarkResult result)
         {
             return !_constraints.Any(constraint => constraint.Applies(result));
+        }
+
+        public void AddConstraint(IBenchmarkConstraint constraint)
+        {
+            RemoveDefaultConstraintFirstTime();
+
+            _constraints.Add(constraint);
+        }
+
+        private void RemoveDefaultConstraintFirstTime()
+        {
+            if (_useDefaultConstraint)
+            {
+                _constraints.Clear();
+                _useDefaultConstraint = false;
+            }
         }
     }
 }

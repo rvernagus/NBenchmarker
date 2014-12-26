@@ -65,5 +65,20 @@ namespace NBenchmarker.Tests
 
             Assert.IsFalse(benchmark.ShouldContinue(result));
         }
+
+        [TestMethod]
+        public void IfConstraintIsAddedContinuesAccordingToNew()
+        {
+            var trial = new Fakes.FakeTrial("");
+            var benchmark = new Benchmark();
+            var result = new BenchmarkResult("");
+            result.NumberOfIterations = 1;
+
+            Assert.IsFalse(benchmark.ShouldContinue(result));
+
+            benchmark.AddConstraint(new NumberOfIterationsConstraint(2));
+
+            Assert.IsTrue(benchmark.ShouldContinue(result));
+        }
     }
 }
