@@ -18,13 +18,12 @@ namespace NBenchmarker
 
         public BenchmarkResult Run(Trial trial)
         {
-
             var result = new BenchmarkResult(trial.Name);
 
             trial.SetUp();
             trial.Stopwatch.Start();
 
-            while (result.NumberOfIterations < 1)
+            while (ShouldContinue(result))
             {
                 trial.BeforeEachIteration();
                 trial.ForEachIteration();

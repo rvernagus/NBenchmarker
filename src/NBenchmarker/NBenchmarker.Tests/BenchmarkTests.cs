@@ -55,7 +55,6 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void ContinuesForOneIterationByDefault()
         {
-            var trial = new Fakes.FakeTrial("");
             var benchmark = new Benchmark();
             var result = new BenchmarkResult("");
 
@@ -69,7 +68,6 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void IfConstraintIsAddedContinuesAccordingToNew()
         {
-            var trial = new Fakes.FakeTrial("");
             var benchmark = new Benchmark();
             var result = new BenchmarkResult("");
             result.NumberOfIterations = 1;
@@ -79,6 +77,20 @@ namespace NBenchmarker.Tests
             benchmark.AddConstraint(new NumberOfIterationsConstraint(2));
 
             Assert.IsTrue(benchmark.ShouldContinue(result));
+        }
+
+        [TestMethod]
+        public void ContinueWithNumberOfIterationsConstraint()
+        {
+            var benchmark = new Benchmark();
+            var result = new BenchmarkResult("");
+            benchmark.AddConstraint(new NumberOfIterationsConstraint(2));
+
+            result.NumberOfIterations = 1;
+            Assert.IsTrue(benchmark.ShouldContinue(result));
+
+            result.NumberOfIterations = 2;
+            Assert.IsFalse(benchmark.ShouldContinue(result));
         }
     }
 }
