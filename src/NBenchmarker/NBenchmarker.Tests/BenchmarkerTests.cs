@@ -6,13 +6,22 @@ namespace NBenchmarker.Tests
     [TestClass]
     public class BenchmarkerTests
     {
+        private Benchmarker benchmarker;
+        private Fakes.FakeTrial trial;
+        private BenchmarkResult result;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            benchmarker = new Benchmarker();
+            trial = new Fakes.FakeTrial("");
+            result = new BenchmarkResult("");
+        }
+
         [TestMethod]
         public void BenchmarkExecutesTrialActionsInSequence()
         {
-            var trial = new Fakes.FakeTrial("");
-            var benchmark = new Benchmarker();
-
-            benchmark.Run(trial);
+            benchmarker.Run(trial);
 
             Assert.AreEqual("12345", trial.CallOrder);
         }
@@ -20,11 +29,9 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void ResultRecordsStopwatchElapsedTime()
         {
-            var trial = new Fakes.FakeTrial("");
             trial.SetElapsedTime(TimeSpan.FromSeconds(1));
-            var benchmark = new Benchmarker();
 
-            var result = benchmark.Run(trial);
+            var result = benchmarker.Run(trial);
 
             Assert.AreEqual(TimeSpan.FromSeconds(1), result.ElapsedTime);
         }
@@ -32,10 +39,7 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void ExecutesStopwatchInSequence()
         {
-            var trial = new Fakes.FakeTrial("");
-            var benchmark = new Benchmarker();
-
-            benchmark.Run(trial);
+            benchmarker.Run(trial);
 
             var stopwatch = (Fakes.FakeStopwatch)trial.Stopwatch;
             Assert.AreEqual("123", stopwatch.CallOrder);
@@ -44,10 +48,7 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void DefaultIteratesOneTime()
         {
-            var trial = new Fakes.FakeTrial("");
-            var benchmark = new Benchmarker();
-
-            var result = benchmark.Run(trial);
+            var result = benchmarker.Run(trial);
 
             Assert.AreEqual(1, result.NumberOfIterations);
         }
@@ -55,56 +56,47 @@ namespace NBenchmarker.Tests
         [TestMethod]
         public void ContinuesForOneIterationByDefault()
         {
-            var benchmark = new Benchmarker();
-            var result = new BenchmarkResult("");
-
-            Assert.IsTrue(benchmark.ShouldContinue(result));
+            Assert.IsTrue(benchmarker.ShouldContinue(result));
 
             result.NumberOfIterations = 1;
 
-            Assert.IsFalse(benchmark.ShouldContinue(result));
+            Assert.IsFalse(benchmarker.ShouldContinue(result));
         }
 
         [TestMethod]
         public void IfConstraintIsAddedContinuesAccordingToNew()
         {
-            var benchmark = new Benchmarker();
-            var result = new BenchmarkResult("");
             result.NumberOfIterations = 1;
 
-            Assert.IsFalse(benchmark.ShouldContinue(result));
+            Assert.IsFalse(benchmarker.ShouldContinue(result));
 
-            benchmark.AddConstraint(new NumberOfIterationsConstraint(2));
+            benchmarker.AddConstraint(new NumberOfIterationsConstraint(2));
 
-            Assert.IsTrue(benchmark.ShouldContinue(result));
+            Assert.IsTrue(benchmarker.ShouldContinue(result));
         }
 
         [TestMethod]
         public void ContinueWithNumberOfIterationsConstraint()
         {
-            var benchmark = new Benchmarker();
-            var result = new BenchmarkResult("");
-            benchmark.AddConstraint(new NumberOfIterationsConstraint(2));
+            benchmarker.AddConstraint(new NumberOfIterationsConstraint(2));
 
             result.NumberOfIterations = 1;
-            Assert.IsTrue(benchmark.ShouldContinue(result));
+            Assert.IsTrue(benchmarker.ShouldContinue(result));
 
             result.NumberOfIterations = 2;
-            Assert.IsFalse(benchmark.ShouldContinue(result));
+            Assert.IsFalse(benchmarker.ShouldContinue(result));
         }
 
         [TestMethod]
         public void ContinueWithSecondsConstraint()
         {
-            var benchmark = new Benchmarker();
-            var result = new BenchmarkResult("");
-            benchmark.AddConstraint(new SecondsConstraint(5));
+            benchmarker.AddConstraint(new SecondsConstraint(5));
 
             result.ElapsedTime = TimeSpan.FromSeconds(4.9);
-            Assert.IsTrue(benchmark.ShouldContinue(result));
+            Assert.IsTrue(benchmarker.ShouldContinue(result));
 
             result.ElapsedTime = TimeSpan.FromSeconds(5.0);
-            Assert.IsFalse(benchmark.ShouldContinue(result));
+            Assert.IsFalse(benchmarker.ShouldContinue(result));
         }
     }
 }

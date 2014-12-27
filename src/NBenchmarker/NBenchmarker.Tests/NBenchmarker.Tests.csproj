@@ -61,7 +61,7 @@
     <Compile Include="BenchmarkResultTests.cs" />
     <Compile Include="SecondsConstraintTests.cs" />
     <Compile Include="NumberOfIterationsConstraintTests.cs" />
-    <Compile Include="BenchmarkTests.cs" />
+    <Compile Include="BenchmarkerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NBenchmarker\NBenchmarker.csproj">
