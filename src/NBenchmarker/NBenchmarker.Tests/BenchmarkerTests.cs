@@ -98,5 +98,20 @@ namespace NBenchmarker.Tests
             result.ElapsedTime = TimeSpan.FromSeconds(5.0);
             Assert.IsFalse(benchmarker.ShouldContinue(result));
         }
+
+        [TestMethod]
+        public void ReturnsResultForEachTrial()
+        {
+            var trial1 = new Fakes.FakeTrial("1");
+            var trial2 = new Fakes.FakeTrial("2");
+            var trial3 = new Fakes.FakeTrial("3");
+
+            var results = benchmarker.Run(trial1, trial2, trial3);
+
+            Assert.AreEqual(3, results.Count);
+            Assert.AreEqual("1", results[0].TrialName);
+            Assert.AreEqual("2", results[1].TrialName);
+            Assert.AreEqual("3", results[2].TrialName);
+        }
     }
 }
