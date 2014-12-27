@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace NBenchmarker.Tests
 {
@@ -112,6 +113,19 @@ namespace NBenchmarker.Tests
             Assert.AreEqual("1", results[0].TrialName);
             Assert.AreEqual("2", results[1].TrialName);
             Assert.AreEqual("3", results[2].TrialName);
+        }
+
+        [TestMethod]
+        public void AllowEnumerableOfTrialsToBeRun()
+        {
+            var trial1 = new Fakes.FakeTrial("1");
+            var trial2 = new Fakes.FakeTrial("2");
+            var trial3 = new Fakes.FakeTrial("3");
+            IEnumerable<Trial> trials = new Trial[] { trial1, trial2, trial3 };
+
+            var results = benchmarker.Run(trials);
+
+            Assert.AreEqual(3, results.Count);
         }
     }
 }

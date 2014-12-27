@@ -16,6 +16,11 @@ namespace NBenchmarker
             _constraints.Add(defaultConstraint);
         }
 
+        public IList<BenchmarkResult> Run(IEnumerable<Trial> trials)
+        {
+            return Run(trials.ToArray());
+        }
+
         public IList<BenchmarkResult> Run(params Trial[] trials)
         {
             return trials.Select(trial => Run(trial)).ToList();
