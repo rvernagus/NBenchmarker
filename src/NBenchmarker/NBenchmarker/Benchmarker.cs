@@ -38,6 +38,7 @@ namespace NBenchmarker
                 trial.BeforeEachIteration();
                 trial.ForEachIteration();
                 result.NumberOfIterations += 1;
+                result.ElapsedTime = trial.Stopwatch.GetElapsedTime();
                 trial.AfterEachIteration(result);
             }
 

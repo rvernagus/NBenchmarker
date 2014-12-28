@@ -53,12 +53,28 @@ namespace NBenchmarker.Tests
         }
 
         [TestMethod]
+        public void SetsElapsedTimeEachIteration()
+        {
+            var wasCalled = false;
+            trial.SetElapsedTime(TimeSpan.FromSeconds(1));
+            trial.AfterEachIteration = result =>
+            {
+                Assert.AreEqual(TimeSpan.FromSeconds(1), result.ElapsedTime);
+                wasCalled = true;
+            };
+
+            benchmarker.Run(trial);
+
+            Assert.IsTrue(wasCalled);
+        }
+
+        [TestMethod]
         public void ExecutesStopwatchInSequence()
         {
             benchmarker.Run(trial);
 
             var stopwatch = (Fakes.FakeStopwatch)trial.Stopwatch;
-            Assert.AreEqual("123", stopwatch.CallOrder);
+            Assert.AreEqual("1323", stopwatch.CallOrder);
         }
 
         [TestMethod]
