@@ -38,6 +38,21 @@ namespace NBenchmarker.Tests
         }
 
         [TestMethod]
+        public void AddsIterationToResult()
+        {
+            var wasCalled = false;
+            trial.AfterEachIteration = result =>
+            {
+                Assert.AreEqual(1, result.NumberOfIterations);
+                wasCalled = true;
+            };
+
+            benchmarker.Run(trial);
+
+            Assert.IsTrue(wasCalled);
+        }
+
+        [TestMethod]
         public void ExecutesStopwatchInSequence()
         {
             benchmarker.Run(trial);

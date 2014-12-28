@@ -1,7 +1,6 @@
 ﻿using NBenchmarker.ProofOfConcept.Trials;
 using System;
 using System.Linq;
-using System.Threading;
 
 namespace NBenchmarker.ProofOfConcept
 {
@@ -21,9 +20,10 @@ namespace NBenchmarker.ProofOfConcept
                 new StringIndexOfTrial("abcdefghijklmnop", "jkl"),
                 new RegexMatchTrial("abcdefghijklmnop", "jkl"),
             };
-            Benchmark
-                .RunAll(trials, new SecondsConstraint(5))
-                //.RunAll(trials, new NumberOfIterationsConstraint(10))
+
+            var benchmarker = new Benchmarker();
+            benchmarker.AddConstraint(new SecondsConstraint(5));
+            benchmarker.Run(trials)
                 .ToList()
                 .ForEach(result =>
                 {

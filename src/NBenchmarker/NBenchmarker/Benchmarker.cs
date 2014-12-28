@@ -37,8 +37,8 @@ namespace NBenchmarker
             {
                 trial.BeforeEachIteration();
                 trial.ForEachIteration();
-                trial.AfterEachIteration();
                 result.NumberOfIterations += 1;
+                trial.AfterEachIteration(result);
             }
 
             trial.Stopwatch.Stop();

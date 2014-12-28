@@ -11,7 +11,7 @@ namespace NBenchmarker
             this.SetUp = () => { };
             this.BeforeEachIteration = () => { };
             this.ForEachIteration = () => { };
-            this.AfterEachIteration = () => { };
+            this.AfterEachIteration = _ => { };
             this.TearDown = () => { };
         }
 
@@ -25,7 +25,7 @@ namespace NBenchmarker
 
         public Action ForEachIteration { get; set; }
 
-        public Action AfterEachIteration { get; set; }
+        public Action<BenchmarkResult> AfterEachIteration { get; set; }
 
         public Action TearDown { get; set; }
     }

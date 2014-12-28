@@ -21,7 +21,7 @@ namespace NBenchmarker.Tests.Fakes
                 { _beforeEachIterationWasCalled = true; CallOrder += "2"; };
             this.ForEachIteration = () =>
                 { _forEachIterationWasCalled = true; CallOrder += "3"; };
-            this.AfterEachIteration = () =>
+            this.AfterEachIteration = _ =>
                 { _afterEachIterationWasCalled = true; CallOrder += "4"; };
             this.TearDown = () =>
                 { _tearDownWasCalled = true; CallOrder += "5"; };
