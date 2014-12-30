@@ -7,7 +7,10 @@ namespace NBenchmarker.ProofOfConcept.Trials
         public RegexMatchTrial(string stringToSearch, string stringToFind)
             : base("Regex.IsMatch")
         {
-            Regex.IsMatch(stringToSearch, stringToFind);
+            this.ForEachIteration = () =>
+            {
+                Regex.IsMatch(stringToSearch, stringToFind);
+            };
         }
     }
 }

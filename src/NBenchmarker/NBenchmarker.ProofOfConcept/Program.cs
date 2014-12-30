@@ -8,18 +8,18 @@ namespace NBenchmarker.ProofOfConcept
     {
         static void Main(string[] args)
         {
-            var trials = new Trial[]
-            {
-                new SixHundredMillisecondTrial(),
-                new TwoHundredMillisecondTrial(),
-                new TenMillisecondTrial()
-            };
-            //var trials = new Trial[] 
+            //var trials = new Trial[]
             //{
-            //    new StringContainsTrial("abcdefghijklmnop", "jkl"),
-            //    new StringIndexOfTrial("abcdefghijklmnop", "jkl"),
-            //    new RegexMatchTrial("abcdefghijklmnop", "jkl"),
+            //    new SixHundredMillisecondTrial(),
+            //    new TwoHundredMillisecondTrial(),
+            //    new TenMillisecondTrial()
             //};
+            var trials = new Trial[] 
+            {
+                new StringContainsTrial("abcdefghijklmnop", "jkl"),
+                new StringIndexOfTrial("abcdefghijklmnop", "jkl"),
+                new RegexMatchTrial("abcdefghijklmnop", "jkl"),
+            };
 
             var benchmarker = new Benchmarker();
             benchmarker.AddConstraint(new SecondsConstraint(5));
