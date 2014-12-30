@@ -14,11 +14,16 @@ namespace NBenchmarker.ProofOfConcept
             //    new TwoHundredMillisecondTrial(),
             //    new TenMillisecondTrial()
             //};
-            var trials = new Trial[] 
+            //var trials = new Trial[] 
+            //{
+            //    new StringContainsTrial("abcdefghijklmnop", "jkl"),
+            //    new StringIndexOfTrial("abcdefghijklmnop", "jkl"),
+            //    new RegexMatchTrial("abcdefghijklmnop", "jkl"),
+            //};
+            var trials = new Trial[]
             {
-                new StringContainsTrial("abcdefghijklmnop", "jkl"),
-                new StringIndexOfTrial("abcdefghijklmnop", "jkl"),
-                new RegexMatchTrial("abcdefghijklmnop", "jkl"),
+                new BoxingTrial(),
+                new NoBoxingTrial(),
             };
 
             var benchmarker = new Benchmarker();
