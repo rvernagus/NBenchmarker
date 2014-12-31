@@ -8,7 +8,7 @@ namespace NBenchmarker.ProofOfConcept.Trials
         public SixHundredMillisecondTrial()
             : base("600ms Trial")
         {
-            this.SetUp = () =>
+            this.SetUp = _ =>
             {
                 Console.WriteLine("600ms trial set up...");
                 Thread.Sleep(100);

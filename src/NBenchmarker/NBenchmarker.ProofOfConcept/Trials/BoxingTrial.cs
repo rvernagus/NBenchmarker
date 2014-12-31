@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace NBenchmarker.ProofOfConcept.Trials
 {
@@ -10,9 +11,23 @@ namespace NBenchmarker.ProofOfConcept.Trials
             var list = new List<object>();
             var i = 0;
 
-            this.ForEachIteration = () =>
+            this.SetUp = result => result.Data["TotalMemory"] = 0L;
+
+            this.ForEachIteration = () => list.Add(i);
+
+            this.AfterEachIteration = result =>
             {
-                list.Add(i);
+                var totalMemory = GC.GetTotalMemory(false);
+                if (totalMemory > (Int64)result.Data["TotalMemory"])
+                {
+                    result.Data["TotalMemory"] = totalMemory;
+                }
+            };
+
+            this.TearDown = () =>
+            {
+                list.Clear();
+                GC.Collect();
             };
         }
     }

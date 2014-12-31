@@ -15,7 +15,7 @@ namespace NBenchmarker.Tests.Fakes
         {
             this.CallOrder = "";
             this.Stopwatch = new FakeStopwatch();
-            this.SetUp = () =>
+            this.SetUp = _ =>
                 { _setUpWasCalled = true; CallOrder += "1"; };
             this.BeforeEachIteration = () =>
                 { _beforeEachIterationWasCalled = true; CallOrder += "2"; };

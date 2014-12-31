@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NBenchmarker
@@ -30,7 +31,7 @@ namespace NBenchmarker
         {
             var result = new BenchmarkResult(trial.Name);
 
-            trial.SetUp();
+            trial.SetUp(result);
             trial.Stopwatch.Start();
 
             while (ShouldContinue(result))

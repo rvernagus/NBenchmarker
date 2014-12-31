@@ -8,7 +8,7 @@ namespace NBenchmarker
         {
             this.Name = name;
             this.Stopwatch = new DefaultStopwatch();
-            this.SetUp = () => { };
+            this.SetUp = _ => { };
             this.BeforeEachIteration = () => { };
             this.ForEachIteration = () => { };
             this.AfterEachIteration = _ => { };
@@ -19,7 +19,7 @@ namespace NBenchmarker
 
         public IStopwatch Stopwatch { get; set; }
 
-        public Action SetUp { get; set; }
+        public Action<BenchmarkResult> SetUp { get; set; }
 
         public Action BeforeEachIteration { get; set; }
 

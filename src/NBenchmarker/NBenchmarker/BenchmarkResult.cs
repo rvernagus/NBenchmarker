@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NBenchmarker
 {
@@ -12,9 +13,12 @@ namespace NBenchmarker
             this.TrialName = trialName;
             this.ElapsedTime = TimeSpan.Zero;
             this.NumberOfIterations = 0;
+            this.Data = new Dictionary<string, object>();
         }
 
         public string TrialName { get; private set; }
+
+        public IDictionary<string, object> Data { get; private set; }
 
         public TimeSpan ElapsedTime
         {

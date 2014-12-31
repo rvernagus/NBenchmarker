@@ -21,7 +21,7 @@ namespace NBenchmarker.Tests
             Assert.IsNotNull(trial.BeforeEachIteration);
             Assert.IsNotNull(trial.ForEachIteration);
             Assert.IsNotNull(trial.TearDown);
-            trial.SetUp();
+            trial.SetUp(null);
             trial.BeforeEachIteration();
             trial.ForEachIteration();
             trial.TearDown();

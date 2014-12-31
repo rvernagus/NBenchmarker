@@ -36,6 +36,7 @@ namespace NBenchmarker.ProofOfConcept
                     Console.WriteLine("Elapsed time: " + result.ElapsedTime);
                     Console.WriteLine("# of iterations: " + result.NumberOfIterations);
                     Console.WriteLine("Avg iteration duration: " + result.IterationAverageDuration);
+                    Console.WriteLine("Largest Total Memory: " + result.Data["TotalMemory"]);
                     Console.WriteLine();
                 });
 
