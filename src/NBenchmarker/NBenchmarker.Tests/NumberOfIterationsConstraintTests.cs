@@ -16,28 +16,32 @@ namespace NBenchmarker.Tests
             result = new BenchmarkResult(trial.Name);
         }
 
-        [TestMethod]
-        public void DoesNotApplyWhenIterationsAreLessThan()
+        [TestClass]
+        public class TheAppliesMethod : NumberOfIterationsConstraintTests
         {
-            result.NumberOfIterations = 4;
-            var constraint = new NumberOfIterationsConstraint(5);
-            Assert.IsFalse(constraint.Applies(result));
-        }
+            [TestMethod]
+            public void IsFalseWhenIterationsAreLessThanStoredValue()
+            {
+                result.NumberOfIterations = 4;
+                var constraint = new NumberOfIterationsConstraint(5);
+                Assert.IsFalse(constraint.Applies(result));
+            }
 
-        [TestMethod]
-        public void AppliesWhenIterationsAreEqual()
-        {
-            result.NumberOfIterations = 5;
-            var constraint = new NumberOfIterationsConstraint(5);
-            Assert.IsTrue(constraint.Applies(result));
-        }
+            [TestMethod]
+            public void IsTrueWhenIterationsAreEqualToStoredValue()
+            {
+                result.NumberOfIterations = 5;
+                var constraint = new NumberOfIterationsConstraint(5);
+                Assert.IsTrue(constraint.Applies(result));
+            }
 
-        [TestMethod]
-        public void AppliesWhenIterationsAreGreaterThan()
-        {
-            result.NumberOfIterations = 6;
-            var constraint = new NumberOfIterationsConstraint(5);
-            Assert.IsTrue(constraint.Applies(result));
+            [TestMethod]
+            public void IsTrueWhenIterationsAreGreaterThanStoredValue()
+            {
+                result.NumberOfIterations = 6;
+                var constraint = new NumberOfIterationsConstraint(5);
+                Assert.IsTrue(constraint.Applies(result));
+            }
         }
     }
 }
