@@ -16,28 +16,32 @@ namespace NBenchmarker.Tests
             result = new BenchmarkResult(trial.Name);
         }
 
-        [TestMethod]
-        public void DoesNotApplyWhenSecondsAreLessThan()
+        [TestClass]
+        public class TheAppliesMethod : SecondsConstraintTests
         {
-            result.ElapsedTime = TimeSpan.FromSeconds(4);
-            var constraint = new SecondsConstraint(5);
-            Assert.IsFalse(constraint.Applies(result));
-        }
+            [TestMethod]
+            public void IsFalseWhenSecondsAreLessThanStoredValue()
+            {
+                result.ElapsedTime = TimeSpan.FromSeconds(4);
+                var constraint = new SecondsConstraint(5);
+                Assert.IsFalse(constraint.Applies(result));
+            }
 
-        [TestMethod]
-        public void AppliesWhenSecondsAreEqual()
-        {
-            result.ElapsedTime = TimeSpan.FromSeconds(5);
-            var constraint = new SecondsConstraint(5);
-            Assert.IsTrue(constraint.Applies(result));
-        }
+            [TestMethod]
+            public void IsTruenWhenSecondsAreEqualToStoredValue()
+            {
+                result.ElapsedTime = TimeSpan.FromSeconds(5);
+                var constraint = new SecondsConstraint(5);
+                Assert.IsTrue(constraint.Applies(result));
+            }
 
-        [TestMethod]
-        public void AppliesWhenSecondsAreGreaterThan()
-        {
-            result.ElapsedTime = TimeSpan.FromSeconds(6);
-            var constraint = new SecondsConstraint(5);
-            Assert.IsTrue(constraint.Applies(result));
+            [TestMethod]
+            public void IsTrueWhenSecondsAreGreaterThanStoredValue()
+            {
+                result.ElapsedTime = TimeSpan.FromSeconds(6);
+                var constraint = new SecondsConstraint(5);
+                Assert.IsTrue(constraint.Applies(result));
+            }
         }
     }
 }
