@@ -1,20 +1,19 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NBenchmarker.Tests
 {
-    [TestClass]
+    //[TestClass]
     public class TrialTests
     {
-         [TestClass]
+        [TestClass]
         public class TheConstructor : TrialTests
         {
-             [TestMethod]
-             public void CreatesATrialWithTheGivenName()
-             {
-                 var trial = new Trial("A Trial");
-                 Assert.AreEqual("A Trial", trial.Name);
-             }
+            [TestMethod]
+            public void CreatesATrialWithTheGivenName()
+            {
+                var trial = new Trial("A Trial");
+                Assert.AreEqual("A Trial", trial.Name);
+            }
 
             [TestMethod]
             public void CreatesATrialWithEmptyActions()

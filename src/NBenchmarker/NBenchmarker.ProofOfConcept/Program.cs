@@ -1,6 +1,7 @@
 ﻿using NBenchmarker.ProofOfConcept.Trials;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace NBenchmarker.ProofOfConcept
 {
@@ -8,6 +9,26 @@ namespace NBenchmarker.ProofOfConcept
     {
         static void Main(string[] args)
         {
+var option1 = new Trial("100ms Trial")
+{
+    ForEachIteration = () => Thread.Sleep(100)
+};
+var option2 = new Trial("1000ms Trial")
+{
+    ForEachIteration = () => Thread.Sleep(1000)
+};
+var benchmarker = new Benchmarker();
+benchmarker.AddConstraint(new SecondsConstraint(5));
+benchmarker.Run(option1, option2)
+    .ToList()
+    .ForEach(result =>
+    {
+        Console.WriteLine(result.TrialName);
+        Console.WriteLine("Elapsed time: " + result.ElapsedTime);
+        Console.WriteLine("# of iterations: " + result.NumberOfIterations);
+        Console.WriteLine("Avg iteration duration: " + result.IterationAverageDuration);
+        Console.WriteLine();
+    });
             //var trials = new Trial[]
             //{
             //    new SixHundredMillisecondTrial(),
@@ -26,19 +47,19 @@ namespace NBenchmarker.ProofOfConcept
                 new NoBoxingTrial(),
             };
 
-            var benchmarker = new Benchmarker();
-            benchmarker.AddConstraint(new SecondsConstraint(5));
-            benchmarker.Run(trials)
-                .ToList()
-                .ForEach(result =>
-                {
-                    Console.WriteLine(result.TrialName);
-                    Console.WriteLine("Elapsed time: " + result.ElapsedTime);
-                    Console.WriteLine("# of iterations: " + result.NumberOfIterations);
-                    Console.WriteLine("Avg iteration duration: " + result.IterationAverageDuration);
-                    Console.WriteLine("Largest Total Memory: " + result.Data["TotalMemory"]);
-                    Console.WriteLine();
-                });
+            //var benchmarker = new Benchmarker();
+            //benchmarker.AddConstraint(new SecondsConstraint(5));
+            //benchmarker.Run(trials)
+            //    .ToList()
+            //    .ForEach(result =>
+            //    {
+            //        Console.WriteLine(result.TrialName);
+            //        Console.WriteLine("Elapsed time: " + result.ElapsedTime);
+            //        Console.WriteLine("# of iterations: " + result.NumberOfIterations);
+            //        Console.WriteLine("Avg iteration duration: " + result.IterationAverageDuration);
+            //        Console.WriteLine("Largest Total Memory: " + result.Data["TotalMemory"]);
+            //        Console.WriteLine();
+            //    });
 
 
 
