@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>NBenchmarker</id>
+    <version>0.1.0.0</version>
+    <title>NBenchmarker</title>
+    <authors>Ray Vernagus</authors>
+    <owners>Ray Vernagus</owners>
+    <projectUrl>https://github.com/rvernagus/NBenchmarker</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A lightweight, micro-benchmarker for .NET.</description>
+    <releaseNotes>Initial release!</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>benchmarking performance testing</tags>
+  </metadata>
+</package>
