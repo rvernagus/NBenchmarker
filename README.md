@@ -5,17 +5,17 @@ Do you have an algorithm that you need to eek every last CPU cycle out of? Is it
 
 Here's an example that compares two different options by running each expression as many times as possible within a specified amount of time (5 seconds):
 ```
-var option1 = new Trial("100ms Trial")
+var trial1 = new Trial("100ms Trial")
 {
     ForEachIteration = () => Thread.Sleep(100)
 };
-var option2 = new Trial("1000ms Trial")
+var trial2 = new Trial("1000ms Trial")
 {
     ForEachIteration = () => Thread.Sleep(1000)
 };
 var benchmarker = new Benchmarker();
 benchmarker.AddConstraint(new SecondsConstraint(5));
-benchmarker.Run(option1, option2)
+benchmarker.Run(trial1, trial2)
     .ToList()
     .ForEach(result =>
     {
