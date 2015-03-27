@@ -11,7 +11,7 @@ namespace TimeTrialExample
         {
             this.SetUp = _ =>
             {
-                Console.WriteLine("Trial 3 Setup...");
+                Console.WriteLine("10ms trial set up...");
                 Thread.Sleep(100);
             };
             this.BeforeEachIteration = () =>
@@ -26,7 +26,7 @@ namespace TimeTrialExample
             };
             this.TearDown = () =>
             {
-                Console.WriteLine("\nTrial 3 Teardown...");
+                Console.WriteLine("\n10ms trial tear down...");
                 Thread.Sleep(100);
             };
         }

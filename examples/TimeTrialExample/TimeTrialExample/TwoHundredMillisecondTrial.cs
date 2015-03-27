@@ -21,7 +21,7 @@ namespace TimeTrialExample
             };
             this.TearDown = () =>
             {
-                Console.WriteLine("\n200ms trial 1 tear down...");
+                Console.WriteLine("\n200ms trial tear down...");
                 Thread.Sleep(500);
             };
         }
